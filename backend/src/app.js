@@ -26,6 +26,9 @@ app.use(
       "http://192.168.29.186:5173",
       "https://veloop-captcha-project.vercel.app",
     ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 204,
   })
 );
 app.use(express.json());
