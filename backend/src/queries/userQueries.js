@@ -8,7 +8,7 @@ export const createUser = async ({ email, passwordHash }) => {
 };
 
 export const findUserByEmail = async (email) => {
-  return User.findOne({ email });
+  return User.findOne({ email }).select("+passwordHash");
 };
 
 export const findUserById = async (userId) => {

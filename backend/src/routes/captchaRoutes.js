@@ -16,7 +16,7 @@ const router = express.Router();
 
 const captchaRateLimiter = rateLimit({
   windowMs: 60 * 1000,
-  limit: 10,
+  limit: 30,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: {

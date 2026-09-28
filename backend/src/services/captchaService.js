@@ -48,30 +48,29 @@ const createCaptchaText = () => {
   return captchaText;
 };
 
+/* =========================================================
+   SIMILAR OPTION
+   Changes exactly ONE character from the original CAPTCHA
+   ========================================================= */
+
 const createSimilarOption = (captchaText) => {
   const characters = captchaText.split("");
 
-  const firstIndex = crypto.randomInt(
+  const changeIndex = crypto.randomInt(
     0,
     characters.length
   );
 
-  let secondIndex = crypto.randomInt(
-    0,
-    characters.length
-  );
+  let replacementCharacter =
+    CAPTCHA_CHARACTERS[
+      crypto.randomInt(
+        0,
+        CAPTCHA_CHARACTERS.length
+      )
+    ];
 
-  while (secondIndex === firstIndex) {
-    secondIndex = crypto.randomInt(
-      0,
-      characters.length
-    );
-  }
-
-  let firstCharacter = characters[firstIndex];
-
-  while (firstCharacter === characters[firstIndex]) {
-    firstCharacter =
+  while (replacementCharacter === characters[changeIndex]) {
+    replacementCharacter =
       CAPTCHA_CHARACTERS[
         crypto.randomInt(
           0,
@@ -80,30 +79,29 @@ const createSimilarOption = (captchaText) => {
       ];
   }
 
-  let secondCharacter = characters[secondIndex];
-
-  while (secondCharacter === characters[secondIndex]) {
-    secondCharacter =
-      CAPTCHA_CHARACTERS[
-        crypto.randomInt(
-          0,
-          CAPTCHA_CHARACTERS.length
-        )
-      ];
-  }
-
-  characters[firstIndex] = firstCharacter;
-  characters[secondIndex] = secondCharacter;
+  characters[changeIndex] = replacementCharacter;
 
   return characters.join("");
 };
 
+/* =========================================================
+   COMPLETELY DIFFERENT OPTION
+   Generates an option sharing NO characters with the
+   original CAPTCHA
+   ========================================================= */
+
 const createDifferentOption = (captchaText) => {
-  let differentOption = "";
+  const originalCharacters = new Set(captchaText);
+
+  let differentOption;
 
   do {
     differentOption = createCaptchaText();
-  } while (differentOption === captchaText);
+  } while (
+    [...differentOption].some((character) =>
+      originalCharacters.has(character)
+    )
+  );
 
   return differentOption;
 };
@@ -362,20 +360,21 @@ export const verifyChallenge = async ({
         .toUpperCase()}`;
 
       await createGemTransaction(
-  {
-    transactionId,
-    userId,
-    currency: "GEM",
-    amount: rewardAmount,
-    type: "CAPTCHA_REWARD",
-    source: "CAPTCHA_EARN",
-    referenceId: challengeId,
-    balanceBefore: walletUpdate.balanceBefore,
-    balanceAfter: walletUpdate.balanceAfter,
-    status: "COMPLETED",
-  },
-  session
-);
+        {
+          transactionId,
+          userId,
+          currency: "GEM",
+          amount: rewardAmount,
+          type: "CAPTCHA_REWARD",
+          source: "CAPTCHA_EARN",
+          referenceId: challengeId,
+          balanceBefore: walletUpdate.balanceBefore,
+          balanceAfter: walletUpdate.balanceAfter,
+          status: "COMPLETED",
+        },
+        session
+      );
+
       await createAuditLog(
         {
           userId,
@@ -504,6 +503,7 @@ export const noThanks = async ({
 
   return createChallenge(userId);
 };
+
 export const getCaptchaHistory = async (userId) => {
   const history = await findCaptchaHistoryByUserId(userId);
 

@@ -45,7 +45,7 @@ export const registerUser = async ({
 
   await createWallet({
     userId: user._id,
-    balance: 0,
+    balance: 100,
   });
 
   const token = generateToken(user);
