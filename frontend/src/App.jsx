@@ -980,7 +980,7 @@ function App() {
               <span className="brand-name">VELOOP REWARDS</span>
             </div>
 
-            <h1>CAPTCHA FLOW</h1>
+            <h1>CAPTCHA EARN FLOW</h1>
 
             <p className="brand-subtitle">
               Secure Verification • Earn Rewards • Build Trust
