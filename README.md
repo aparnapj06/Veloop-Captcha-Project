@@ -310,24 +310,73 @@ The CAPTCHA challenge stores the authoritative correct option on the backend and
 
 ## Project Structure
 
+## Project Structure
+
 ```text
-Veloop-Captcha-Project/
+VELoop-Captcha-Project/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
+│   │   │   ├── authController.js
+│   │   │   ├── captchaController.js
+│   │   │   └── walletController.js
+│   │   │
 │   │   ├── middleware/
+│   │   │   └── authMiddleware.js
+│   │   │
 │   │   ├── models/
+│   │   │   ├── AuditLog.js
+│   │   │   ├── CaptchaChallenge.js
+│   │   │   ├── CaptchaRewardConfig.js
+│   │   │   ├── GemTransaction.js
+│   │   │   ├── User.js
+│   │   │   └── Wallet.js
+│   │   │
 │   │   ├── queries/
+│   │   │   ├── auditLogQueries.js
+│   │   │   ├── captchaChallengeQueries.js
+│   │   │   ├── captchaRewardConfigQueries.js
+│   │   │   ├── gemTransactionQueries.js
+│   │   │   ├── userQueries.js
+│   │   │   └── walletQueries.js
+│   │   │
 │   │   ├── routes/
+│   │   │   ├── authRoutes.js
+│   │   │   ├── captchaRoutes.js
+│   │   │   └── walletRoutes.js
+│   │   │
 │   │   ├── services/
+│   │   │   ├── authService.js
+│   │   │   └── captchaService.js
+│   │   │
 │   │   └── app.js
-│   └── package.json
+│   │
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── frontend/
 │   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   │
 │   ├── src/
-│   └── package.json
+│   │   ├── assets/
+│   │   ├── api.js
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   └── vite.config.js
 │
+├── .gitignore
 ├── README.md
 ├── API_DOCUMENTATION.md
 ├── SECURITY.md
