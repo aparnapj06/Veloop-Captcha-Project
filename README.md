@@ -304,16 +304,18 @@ AuditLog
 
 The CAPTCHA challenge stores the authoritative correct option on the backend and does not expose it through the public CAPTCHA response.
 
-Project Structure
 VELoop-Captcha-Project/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
 │   │   │   ├── authController.js
 │   │   │   ├── captchaController.js
 │   │   │   └── walletController.js
+│   │   │
 │   │   ├── middleware/
 │   │   │   └── authMiddleware.js
+│   │   │
 │   │   ├── models/
 │   │   │   ├── AuditLog.js
 │   │   │   ├── CaptchaChallenge.js
@@ -321,6 +323,7 @@ VELoop-Captcha-Project/
 │   │   │   ├── GemTransaction.js
 │   │   │   ├── User.js
 │   │   │   └── Wallet.js
+│   │   │
 │   │   ├── queries/
 │   │   │   ├── auditLogQueries.js
 │   │   │   ├── captchaChallengeQueries.js
@@ -328,14 +331,18 @@ VELoop-Captcha-Project/
 │   │   │   ├── gemTransactionQueries.js
 │   │   │   ├── userQueries.js
 │   │   │   └── walletQueries.js
+│   │   │
 │   │   ├── routes/
 │   │   │   ├── authRoutes.js
 │   │   │   ├── captchaRoutes.js
 │   │   │   └── walletRoutes.js
+│   │   │
 │   │   ├── services/
 │   │   │   ├── authService.js
 │   │   │   └── captchaService.js
+│   │   │
 │   │   └── app.js
+│   │
 │   ├── package.json
 │   └── package-lock.json
 │
@@ -343,6 +350,7 @@ VELoop-Captcha-Project/
 │   ├── public/
 │   │   ├── favicon.svg
 │   │   └── icons.svg
+│   │
 │   ├── src/
 │   │   ├── assets/
 │   │   ├── api.js
@@ -350,6 +358,7 @@ VELoop-Captcha-Project/
 │   │   ├── App.jsx
 │   │   ├── index.css
 │   │   └── main.jsx
+│   │
 │   ├── .gitignore
 │   ├── eslint.config.js
 │   ├── index.html
@@ -359,7 +368,11 @@ VELoop-Captcha-Project/
 │   └── vite.config.js
 │
 ├── .gitignore
-└── README.md
+│
+├── README.md
+├── API_DOCUMENTATION.md
+├── SECURITY.md
+└── TESTING.md
 
 
 Environment Variables
