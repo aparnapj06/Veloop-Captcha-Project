@@ -27,34 +27,35 @@ The application follows a backend-authoritative architecture where CAPTCHA corre
 
 The frontend is responsible for presentation and user interaction, while Node.js, Express.js, and MongoDB remain the source of truth for all important business operations.
 
-Main Flow
-User Login
-    ↓
-CAPTCHA Earn Page
-    ↓
-Backend provides a CAPTCHA challenge
-    ↓
-User views CAPTCHA and 4 answer options
-    ↓
-User selects an option
-    ↓
-Selected option is highlighted
-    ↓
-User clicks "Submit Answer"
-    ↓
-Checking state
-    ↓
-Backend validates the submission
-    ↓
-Correct → +1 Gem
-Wrong   → +0.5 Gem
-    ↓
-Wallet and transaction updated by backend
-    ↓
-Result screen
-    ↓
-Claim / No Thanks
-    ↓
+## Main Flow
+
+User Login  
+↓  
+CAPTCHA Earn Page  
+↓  
+Backend provides a CAPTCHA challenge  
+↓  
+User views CAPTCHA and 4 answer options  
+↓  
+User selects an option  
+↓  
+Selected option is highlighted  
+↓  
+User clicks **Submit Answer**  
+↓  
+Checking state  
+↓  
+Backend validates the submission  
+↓  
+Correct → +1 Gem  
+Wrong → +0.5 Gem  
+↓  
+Wallet and transaction updated by backend  
+↓  
+Result screen  
+↓  
+Claim / No Thanks  
+↓  
 New CAPTCHA
 Features
 CAPTCHA Challenge
@@ -142,9 +143,11 @@ Deployment
 Frontend: Vercel
 Backend: Render
 Database: MongoDB Atlas
-Architecture
+## Architecture
+
+```text
                     ┌──────────────────┐
-                    │   React Frontend │
+                    │  React Frontend  │
                     │     (Vercel)     │
                     └────────┬─────────┘
                              │
@@ -157,8 +160,9 @@ Architecture
                              │
                              ▼
                     ┌──────────────────┐
-                    │ MongoDB / Atlas  │
+                    │  MongoDB / Atlas │
                     └──────────────────┘
+```
 
 The frontend communicates with the backend through authenticated API requests.
 
@@ -304,76 +308,31 @@ AuditLog
 
 The CAPTCHA challenge stores the authoritative correct option on the backend and does not expose it through the public CAPTCHA response.
 
-VELoop-Captcha-Project/
-│
+## Project Structure
+
+```text
+Veloop-Captcha-Project/
 ├── backend/
 │   ├── src/
 │   │   ├── controllers/
-│   │   │   ├── authController.js
-│   │   │   ├── captchaController.js
-│   │   │   └── walletController.js
-│   │   │
 │   │   ├── middleware/
-│   │   │   └── authMiddleware.js
-│   │   │
 │   │   ├── models/
-│   │   │   ├── AuditLog.js
-│   │   │   ├── CaptchaChallenge.js
-│   │   │   ├── CaptchaRewardConfig.js
-│   │   │   ├── GemTransaction.js
-│   │   │   ├── User.js
-│   │   │   └── Wallet.js
-│   │   │
 │   │   ├── queries/
-│   │   │   ├── auditLogQueries.js
-│   │   │   ├── captchaChallengeQueries.js
-│   │   │   ├── captchaRewardConfigQueries.js
-│   │   │   ├── gemTransactionQueries.js
-│   │   │   ├── userQueries.js
-│   │   │   └── walletQueries.js
-│   │   │
 │   │   ├── routes/
-│   │   │   ├── authRoutes.js
-│   │   │   ├── captchaRoutes.js
-│   │   │   └── walletRoutes.js
-│   │   │
 │   │   ├── services/
-│   │   │   ├── authService.js
-│   │   │   └── captchaService.js
-│   │   │
 │   │   └── app.js
-│   │
-│   ├── package.json
-│   └── package-lock.json
+│   └── package.json
 │
 ├── frontend/
 │   ├── public/
-│   │   ├── favicon.svg
-│   │   └── icons.svg
-│   │
 │   ├── src/
-│   │   ├── assets/
-│   │   ├── api.js
-│   │   ├── App.css
-│   │   ├── App.jsx
-│   │   ├── index.css
-│   │   └── main.jsx
-│   │
-│   ├── .gitignore
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   ├── README.md
-│   └── vite.config.js
-│
-├── .gitignore
+│   └── package.json
 │
 ├── README.md
 ├── API_DOCUMENTATION.md
 ├── SECURITY.md
 └── TESTING.md
-
+```
 
 Environment Variables
 Backend
