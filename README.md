@@ -57,8 +57,12 @@ Result screen
 Claim / No Thanks  
 ↓  
 New CAPTCHA
-Features
-CAPTCHA Challenge
+
+
+Features:
+
+CAPTCHA Challenge:
+
 CAPTCHA challenges are generated and provided by the backend.
 Each challenge belongs to the authenticated user.
 Each challenge contains exactly four answer options.
@@ -72,7 +76,9 @@ The selected option is sent to the backend.
 The backend determines whether the answer is correct.
 The frontend does not determine CAPTCHA correctness.
 A verification/checking state is displayed before the result.
-Reward System
+
+
+Reward System:
 
 Correct answer:
 
