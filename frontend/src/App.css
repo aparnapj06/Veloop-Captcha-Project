@@ -1919,3 +1919,322 @@ button:focus-visible {
   font-size: 10px;
 }
 
+
+/* ===== MOBILE RESPONSIVE OVERRIDES ===== */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: 100%;
+    padding: 10px 8px;
+  }
+
+  .reference-frame {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 10px 16px;
+    border-radius: 10px;
+  }
+
+  .brand-header h1 {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  .brand-header p {
+    font-size: 10px;
+  }
+
+  .captcha-phone {
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .phone-top {
+    padding: 10px;
+  }
+
+  .captcha-content {
+    width: 100%;
+    padding: 18px 14px 18px;
+  }
+
+  .captcha-content h2 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .captcha-description {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .captcha-code {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 10px 11px;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .captcha-characters {
+    width: 100%;
+    max-width: 100%;
+    gap: 7px;
+  }
+
+  .captcha-characters span {
+    font-size: 19px;
+  }
+
+  .option-label {
+    font-size: 11px;
+  }
+
+  .option-grid {
+    width: 100%;
+    gap: 9px;
+  }
+
+  .captcha-option {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 8px 36px 8px 12px;
+    font-size: 15px;
+    line-height: 1.25;
+    border-radius: 9px;
+  }
+
+  .option-text {
+    min-width: 0;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .option-check-circle {
+    width: 18px;
+    height: 18px;
+    right: 10px;
+  }
+
+  .security-note,
+  .reward-note {
+    width: 100%;
+    padding: 10px 11px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .security-note strong,
+  .reward-note strong {
+    font-size: 12px;
+  }
+
+  .submit-answer {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 12px;
+    font-size: 14px;
+    border-radius: 9px;
+  }
+
+  .get-new-code-button {
+    width: 100%;
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .feature-strip {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .feature-item {
+    min-width: 0;
+    gap: 6px;
+  }
+
+  .feature-icon {
+    width: 18px;
+    height: 18px;
+    flex-basis: 18px;
+  }
+
+  .feature-item strong {
+    font-size: 10px;
+  }
+
+  .feature-item small {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .verifying-screen {
+    width: 100%;
+    min-height: 360px;
+    padding: 30px 16px;
+  }
+
+  .verifying-progress {
+    width: min(260px, 100%);
+  }
+
+  .success-screen,
+  .incorrect-screen {
+    width: 100%;
+    min-height: auto;
+    padding: 34px 16px 26px;
+  }
+
+  .success-actions,
+  .incorrect-actions {
+    width: 100% !important;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .success-actions button,
+  .incorrect-actions button {
+    width: 100% !important;
+    min-height: 46px;
+    font-size: 14px;
+  }
+
+  .success-title,
+  .incorrect-title {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  .success-text,
+  .incorrect-text {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .success-note,
+  .incorrect-note {
+    width: 100%;
+    max-width: 320px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .balance-side strong {
+    font-size: 14px;
+  }
+
+  .balance-side span {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    padding: 8px 6px;
+  }
+
+  .reference-frame {
+    padding: 12px 8px 14px;
+  }
+
+  .brand-header h1 {
+    font-size: 24px;
+  }
+
+  .captcha-content {
+    padding: 16px 12px;
+  }
+
+  .captcha-code {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 6px;
+  }
+
+  .captcha-characters {
+    gap: 5px;
+  }
+
+  .captcha-characters span {
+    font-size: 17px;
+  }
+
+  .captcha-option,
+  .option-text {
+    font-size: 14px;
+  }
+
+  .captcha-option {
+    min-height: 46px;
+    padding-left: 10px;
+    padding-right: 32px;
+  }
+
+  .feature-strip {
+    gap: 7px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-header h1 {
+    font-size: 22px;
+  }
+
+  .captcha-content {
+    padding: 14px 10px;
+  }
+
+  .captcha-content h2 {
+    font-size: 18px;
+  }
+
+  .captcha-description {
+    font-size: 10px;
+  }
+
+  .captcha-characters span {
+    font-size: 15px;
+  }
+
+  .captcha-option,
+  .option-text {
+    font-size: 13px;
+  }
+
+  .option-label {
+    font-size: 10px;
+  }
+
+  .security-note,
+  .reward-note {
+    font-size: 10px;
+  }
+
+  .submit-answer {
+    min-height: 44px;
+    font-size: 13px;
+  }
+}
+
+@media (hover: none) {
+  .captcha-option:hover,
+  .submit-answer:hover,
+  .get-new-code-button:hover {
+    transform: none;
+  }
+}
