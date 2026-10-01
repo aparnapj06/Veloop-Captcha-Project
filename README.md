@@ -104,7 +104,7 @@ The project uses a mock rewarded-ad state for development/demo purposes rather t
 When the user chooses not to claim the displayed reward:
 
 No Thanks
-    ↓
+    ->
 New CAPTCHA
 
 The old challenge is not reused.
@@ -245,14 +245,14 @@ Wallet
 Method	Endpoint
 GET	/api/wallet/gems
 CAPTCHA Verification
-```
+
 The verification request contains only the required challenge information:
 
 {
   "challengeId": "CAP-XXXXXXXXXXXX",
   "selectedOption": "OPTION"
 }
-
+```
 The backend determines:
 
 - Whether the challenge is valid
@@ -306,8 +306,6 @@ CaptchaRewardConfig
 AuditLog
 ```
 The CAPTCHA challenge stores the authoritative correct option on the backend and does not expose it through the public CAPTCHA response.
-
-## Project Structure
 
 ## Project Structure
 
@@ -384,7 +382,7 @@ VELoop-Captcha-Project/
 
 ## Environment Variables
 
-## Backend
+### Backend
 
 The backend requires environment variables for database connectivity and authentication configuration.
 
@@ -411,6 +409,7 @@ Backend:
 - cd backend
 - npm install
 - npm run dev
+
 The backend runs locally on: http://localhost:5000
 
 Frontend:
@@ -419,6 +418,7 @@ Open another terminal:
 - cd frontend
 - npm install
 - npm run dev
+
 The frontend runs locally on: http://localhost:5173
 
 
