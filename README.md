@@ -59,9 +59,7 @@ Claim / No Thanks
 New CAPTCHA
 
 
-Features:
-
-CAPTCHA Challenge:
+### CAPTCHA Challenge Features:
 
 CAPTCHA challenges are generated and provided by the backend.
 Each challenge belongs to the authenticated user.
@@ -78,77 +76,72 @@ The frontend does not determine CAPTCHA correctness.
 A verification/checking state is displayed before the result.
 
 
-Reward System:
+### Reward System:
 
-Correct answer:
+Correct answer: +1 Gem
+Wrong answer: +0.5 Gems
 
-+1 Gem
+Reward values are controlled by the backend reward configuration.The frontend does not calculate or directly modify the user's Gem balance.
 
-Wrong answer:
+### Wallet:
 
-+0.5 Gems
-
-Reward values are controlled by the backend reward configuration.
-
-The frontend does not calculate or directly modify the user's Gem balance.
-
-Wallet
 Wallet balance is stored in MongoDB.
 New users receive an initial balance of 100 Gems.
 Correct CAPTCHA verification adds 1 Gem.
 Wrong CAPTCHA verification adds 0.5 Gems.
 Wallet updates are performed by the backend.
 Gem transactions are recorded in the database.
-Claim Flow
+Claim Flow. After a successful CAPTCHA result, the user can claim the reward.
 
-After a successful CAPTCHA result, the user can claim the reward.
+### The backend checks:
 
-The backend checks:
+Challenge ownership,completion status,reward existence,reward claim status,a reward cannot be claimed more than once.
 
-Challenge ownership
-Completion status
-Reward existence
-Reward claim status
-
-A reward cannot be claimed more than once.
-
+### Mock rewarded-ad
 The project uses a mock rewarded-ad state for development/demo purposes rather than a real third-party advertising network.
 
-No Thanks Flow
+### No Thanks Flow
 
 When the user chooses not to claim the displayed reward:
-
 No Thanks
     ↓
 New CAPTCHA
 
 The old challenge is not reused.
 
-Technology Stack
-Frontend
-React
-Vite
-React Router
-JavaScript
-CSS
-React Hooks
-React Icons / Lucide icons
-Responsive UI
-Backend
-Node.js
-Express.js
-MongoDB
-Mongoose
-JWT authentication
-CORS
-API validation
-Rate limiting
-Database
-MongoDB Atlas
-Deployment
-Frontend: Vercel
-Backend: Render
-Database: MongoDB Atlas
+## Technology Stack
+
+### Frontend
+
+- React
+- Vite
+- React Router
+- JavaScript
+- CSS
+- React Hooks
+- React Icon
+- Responsive UI
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT authentication
+- CORS
+- API validation
+- Rate limiting
+- Database
+- MongoDB Atlas
+
+### Deployment
+
+- Frontend: Vercel
+- Backend: Render
+- Database: MongoDB Atlas
+
+
 ## Architecture
 
 ```text
@@ -170,90 +163,87 @@ Database: MongoDB Atlas
                     └──────────────────┘
 ```
 
-The frontend communicates with the backend through authenticated API requests.
+The frontend communicates with the backend through authenticated API requests. The backend communicates with MongoDB for persistent application data.
 
-The backend communicates with MongoDB for persistent application data.
-
-Backend-Authoritative Security
-
-The frontend is treated as untrusted.
+## Backend-Authoritative Security
+```text
+The frontend is treated as an untrusted client. All security-sensitive and reward-related decisions are controlled and validated by the backend.
 
 The following values are controlled by the backend:
 
-Authenticated user identity
-CAPTCHA correctness
-Challenge ownership
-Challenge expiration
-Challenge completion status
-Reward amount
-Wallet balance
-Reward transaction
-Reward claim status
+- Authenticated user identity
+- CAPTCHA correctness
+- Challenge ownership
+- Challenge expiration
+- Challenge completion status
+- Reward amount
+- Wallet balance
+- Reward transaction
+- Reward claim status
 
-The frontend cannot determine its own reward or wallet balance.
+The frontend cannot determine or modify its own reward or wallet balance.
 
-Client-supplied values such as a fake reward amount or fake isCorrect value are not trusted by the backend.
+Client-supplied values, such as a fake reward amount or a fake `isCorrect` value, are not trusted by the backend.
+```
+## Authentication
 
-Authentication
-
-The application uses JWT-based authentication.
-
-Authenticated requests include the JWT in the Authorization header:
+The application uses JWT-based authentication.Authenticated requests include the JWT in the `Authorization` header:
 
 Authorization: Bearer <token>
 
-The backend derives the authenticated user from the token rather than trusting a user ID supplied by the frontend.
-
-CAPTCHA Security
+## CAPTCHA Security
 
 Each CAPTCHA challenge is associated with the authenticated user.
 
 The backend validates:
 
-Authentication
-Challenge existence
-Challenge ownership
-Challenge expiration
-Challenge status
-Selected option
-Reward configuration
+- Authentication
+- Challenge existence
+- Challenge ownership
+- Challenge expiration
+- Challenge status
+- Selected option
+- Reward configuration
 
 Completed challenges cannot be verified again.
 
 Expired challenges cannot receive rewards.
 
-Reward Transactions
+## Reward Transactions
+```text
 
 Every CAPTCHA reward is recorded as a Gem transaction.
 
 A transaction contains information such as:
 
-Transaction ID
-User ID
-Amount
-Transaction type
-Reference challenge
-Balance before
-Balance after
-Status
-Creation time
+- Transaction ID
+- User ID
+- Amount
+- Transaction type
+- Reference challenge
+- Balance before
+- Balance after
+- Status
+- Creation time
 
-CAPTCHA rewards use the transaction type:
+CAPTCHA rewards use the following transaction type:
 
-CAPTCHA_REWARD
 API Endpoints
 Authentication
-POST /api/auth/register
-POST /api/auth/login
+Method	Endpoint
+POST	/api/auth/register
+POST	/api/auth/login
 CAPTCHA
-GET  /api/captcha/current
-POST /api/captcha/verify
-POST /api/captcha/claim
-POST /api/captcha/new
-GET  /api/captcha/history
-GET  /api/captcha/config
+Method	Endpoint
+GET	/api/captcha/current
+POST	/api/captcha/verify
+POST	/api/captcha/claim
+POST	/api/captcha/new
+GET	/api/captcha/history
+GET	/api/captcha/config
 Wallet
-GET /api/wallet/gems
+Method	Endpoint
+GET	/api/wallet/gems
 CAPTCHA Verification
 
 The verification request contains only the required challenge information:
@@ -277,27 +267,27 @@ The client does not submit the authoritative reward amount.
 Example Reward Flow
 Correct Answer
 Initial Balance: 100 Gems
-
+        ↓
 Correct CAPTCHA
-      ↓
+        ↓
 Backend verifies answer
-      ↓
+        ↓
 Reward: +1 Gem
-      ↓
+        ↓
 New Balance: 101 Gems
-      ↓
+        ↓
 Gem transaction recorded
 Wrong Answer
 Initial Balance: 101 Gems
-
+        ↓
 Wrong CAPTCHA
-      ↓
+        ↓
 Backend verifies answer
-      ↓
+        ↓
 Reward: +0.5 Gem
-      ↓
+        ↓
 New Balance: 101.5 Gems
-      ↓
+        ↓
 Gem transaction recorded
 Database Models
 
@@ -314,6 +304,7 @@ AuditLog
 
 The CAPTCHA challenge stores the authoritative correct option on the backend and does not expose it through the public CAPTCHA response.
 
+```
 ## Project Structure
 
 ## Project Structure
@@ -389,106 +380,104 @@ VELoop-Captcha-Project/
 └── TESTING.md
 ```
 
-Environment Variables
-Backend
+## Environment Variables
+
+## Backend
 
 The backend requires environment variables for database connectivity and authentication configuration.
 
 Example:
 
-MONGO_URI=<MongoDB connection string>
-JWT_SECRET=<JWT secret>
+```env
+MONGO_URI=
+JWT_SECRET=
 PORT=5000
-Frontend
+```
+### Frontend
 
 The frontend uses:
-
 VITE_API_BASE_URL=<backend API URL>
 
 For the deployed application:
-
 VITE_API_BASE_URL=https://veloop-captcha-project.onrender.com/api
 
 Production secrets are not stored in the source code.
 
-Local Development
-Backend
-cd backend
-npm install
-npm run dev
+### Local Development
+```text
+Backend:
+- cd backend
+- npm install
+- npm run dev
 
-The backend runs locally on:
+The backend runs locally on: http://localhost:5000
 
-http://localhost:5000
-Frontend
-
+Frontend:
 Open another terminal:
+ 
+- cd frontend
+- npm install
+- npm run dev
 
-cd frontend
-npm install
-npm run dev
+The frontend runs locally on: http://localhost:5173
+```
 
-The frontend runs locally on:
-
-http://localhost:5173
-Testing and Security Validation
-
+### Testing and Security Validation
+```text
 The implementation has been tested against several negative and abuse scenarios, including:
 
-Duplicate CAPTCHA verification
-Duplicate reward claim
-Expired CAPTCHA
-Invalid CAPTCHA challenge
-Invalid answer option
-Unauthorized request
-Cross-user challenge access
-Fake user ID manipulation
-Fake reward manipulation
-Fake isCorrect manipulation
-Rate limiting
-CAPTCHA history response
-No Thanks/new CAPTCHA flow
-Claim/new CAPTCHA flow
-Wallet reward updates
-Correct answer reward
-Wrong answer reward
+- Duplicate CAPTCHA verification
+- Duplicate reward claim
+- Expired CAPTCHA
+- Invalid CAPTCHA challenge
+- Invalid answer option
+- Unauthorized request
+- Cross-user challenge access
+- Fake user ID manipulation
+- Fake reward manipulation
+- Fake isCorrect manipulation
+- Rate limiting
+- CAPTCHA history response
+- No Thanks/new CAPTCHA flow
+- Claim/new CAPTCHA flow
+- Wallet reward updates
+- Correct answer reward
+- Wrong answer reward
 
 The purpose of these tests is to verify that important reward and CAPTCHA logic remains controlled by the backend.
-
-Responsive Design
-
+```
+### Responsive Design
+```text
 The CAPTCHA Earn interface is designed for:
 
-Mobile phones
-Tablets
-Laptops
-Desktop screens
-Large desktop screens
+- Mobile phones
+- Tablets
+- Laptops
+- Desktop screens
+- Large desktop screens
 
 The interface uses responsive layouts and touch-friendly interactions.
-
-UI / UX
-
+```
+### UI / UX
+```text
 The interface follows the VELoop design direction described in the project assignment:
 
-Premium fintech/rewards appearance
+Premium rewards appearance
 Clean visual hierarchy
 Interactive CAPTCHA option cards
 Selection states
 Hover and touch states
-Checking animation/state
+Checking animation
 Correct and incorrect result states
 Reward presentation
 Responsive layout
 Mobile-friendly interactions
 
 The interface uses actual React components rather than using a screenshot as the UI.
-
-Security Considerations
-
-The application is designed so that important business logic is not trusted from the frontend.
-
-The backend protects against common manipulation attempts such as:
+```
+### Security Considerations
+```text
+The application is designed so that important business logic is not trusted from the frontend.The backend protects against common manipulation attempts such as:
 
 Replaying completed challenges
 Reusing expired challenges
@@ -498,28 +487,21 @@ Sending fake correctness values
 Accessing another user's challenge
 Supplying a fake user identity
 Repeated API requests
+Rate limiting 
+Authentication 
+```
+### Deployment
 
-Rate limiting and authentication are also used as part of the backend protection.
+Frontend deployed using Vercel: https://veloop-captcha-project.vercel.app/
 
-Deployment
-Frontend
+Backend deployed using Render: https://veloop-captcha-project.onrender.com/
 
-Deployed using Vercel:
-
-https://veloop-captcha-project.vercel.app/
-
-Backend
-
-Deployed using Render:
-
-https://veloop-captcha-project.onrender.com/
-
-Database
+### Database
 
 MongoDB Atlas is used for persistent application data.
 
-Project Status
-
+### Project Status
+```text
 The VELoop CAPTCHA Earn module is deployed and accessible through the live frontend.
 
 The implementation includes:
@@ -540,3 +522,4 @@ Rate limiting
 CAPTCHA history
 Responsive UI
 Production deployment
+```
