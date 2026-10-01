@@ -295,16 +295,13 @@ Gem transaction recorded
 ### Database Models
 
 The backend uses MongoDB/Mongoose models for the application's persistent data.
-```text
 Important entities include:
-
-User
-Wallet
-CaptchaChallenge
-GemTransaction
-CaptchaRewardConfig
-AuditLog
-```
+- User
+- Wallet
+- CaptchaChallenge
+- GemTransaction
+- CaptchaRewardConfig
+- AuditLog
 The CAPTCHA challenge stores the authoritative correct option on the backend and does not expose it through the public CAPTCHA response.
 
 ## Project Structure
