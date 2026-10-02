@@ -2186,8 +2186,10 @@ body,
   }
 
    .feature-strip {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 3px;
+     width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 14px;
   }
 
   .feature-item strong {
