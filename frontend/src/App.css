@@ -1740,9 +1740,10 @@ button:focus-visible {
   }
 
   .feature-strip {
-    gap: 5px;
-    padding-left: 2px;
-    padding-right: 2px;
+  width: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
   }
 
   .feature-item {
@@ -1791,7 +1792,10 @@ button:focus-visible {
   }
 
   .feature-strip {
-    grid-template-columns: 1fr 1fr;
+  width: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
   }
 
   .success-actions,
